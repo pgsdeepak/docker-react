@@ -8,3 +8,15 @@ before_install:
 
 script:
   - docker run -e CI=true pgsdeepak/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "pgsdocker"
+  env: "Pgsdocker-env"
+  bucket_name: "elasticbeanstalk-us-east-2-096938525438"
+  bucket_path: "pgsdocker"
+  on:
+    branch: master
+access_key_id: $AWS_ACCESS_KEY
+secret_access_key: $AWS_SECRET_KEY
